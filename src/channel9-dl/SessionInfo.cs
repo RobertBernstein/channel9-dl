@@ -1,0 +1,77 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace channel9_dl
+{
+    public class SessionInfo
+    {
+        public SessionInfo()
+        {
+            this.VideoRecordings = new List<VideoRecording>();
+        }
+
+
+        public string SessionID { get; set; }
+        public string Title { get; set; }
+        public Uri SessionSite { get; set; }
+        public List<VideoRecording> VideoRecordings { get; set; }
+        public DateTime PublishDate { get; set; }
+        
+       
+        public string Presenter { get; set; }
+
+
+        public override string ToString()
+        {
+            return $"{Title} [{this.VideoRecordings.FirstOrDefault()?.Name}]";
+        }
+
+
+
+        public async Task<FileInfo> DownloadMp4SessionAsync(DirectoryInfo directory, bool highestQuality, bool overwrite = false)
+        {
+            IOrderedEnumerable<VideoRecording> videos;
+
+            if (highestQuality)
+            {
+                videos = this.VideoRecordings.Where(v => v.MediaType == "video/mp4").OrderByDescending(v => v.Length);
+            }
+            else
+            {
+                videos = this.VideoRecordings.Where(v => v.MediaType == "video/mp4").OrderBy(v => v.Length);
+            }
+
+            var videoToDownload = videos.FirstOrDefault();
+
+            Console.WriteLine($"Downloading {videoToDownload.GetLocalFileName()}");
+
+            return await videoToDownload.DownloadTo(directory, overwrite);
+        }
+
+        public async Task<FileInfo> DownloadMp3SessionAsync(DirectoryInfo directory, bool highestQuality, bool overwrite = false)
+        {
+            IOrderedEnumerable<VideoRecording> audioTracks;
+
+            if (highestQuality)
+            {
+                audioTracks = this.VideoRecordings.Where(v => v.MediaType == "audio/mp3").OrderByDescending(v => v.Length);
+            }
+            else
+            {
+                audioTracks = this.VideoRecordings.Where(v => v.MediaType == "audio/mp4").OrderBy(v => v.Length);
+            }
+
+            var audioToDownload = audioTracks.FirstOrDefault();
+
+            Console.WriteLine($"Downloading {audioToDownload.GetLocalFileName()}");
+
+            return await audioToDownload.DownloadTo(directory, overwrite);
+        }
+    }
+}

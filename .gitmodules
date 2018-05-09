@@ -1,0 +1,6 @@
+[submodule "SyndicationFeedReaderWriter"]
+	path = src/SyndicationFeedReaderWriter
+	url = https://github.com/MarkDHarris/SyndicationFeedReaderWriter.git
+[submodule "CommandLineUtils"]
+	path = src/CommandLineUtils
+	url = https://github.com/MarkDHarris/CommandLineUtils.git
