@@ -49,9 +49,16 @@ namespace channel9_dl
 
             var videoToDownload = videos.FirstOrDefault();
 
-            Console.WriteLine($"Downloading {videoToDownload.GetLocalFileName()}");
+            if (videoToDownload != null)
+            {
+                Console.WriteLine($"Downloading {videoToDownload.GetLocalFileName()}");
 
-            return await videoToDownload.DownloadTo(directory, overwrite);
+                return await videoToDownload.DownloadTo(directory, overwrite);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public async Task<FileInfo> DownloadMp3SessionAsync(DirectoryInfo directory, bool highestQuality, bool overwrite = false)
