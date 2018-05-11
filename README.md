@@ -1,11 +1,16 @@
 # channel9-dl
-.NET core powered tool to help download MSDN Channel 9 videos for offline viewing
-Better documentation to come but the intent of this tool is to facilitate downloading of channel 9 training videos for offline use.
 
-Sample expected arguments
-dotnet channel9-dl --rss https://s.ch9.ms/Events/Build/2017/RSS -d C:\MyVideos\Build --mp4 --mp3 --hd -n 5
+.NET core powered tool to help download MSDN Channel 9 videos for offline viewing.
 
-where 
+Use `git clone --recurse-submodules` to clone this repository.
+
+Better documentation to come, but the intent of this tool is to facilitate downloading of channel 9 training videos for offline use.
+
+Sample expected arguments:
+
+`dotnet channel9-dl --rss <https://s.ch9.ms/Events/Build/2017/RSS> -d C:\MyVideos\Build --mp4 --mp3 --hd -n 5`
+
+where
   --rss is required - specify the RSS feed from the channel 9 event containing the recordings
   -d is required - specify the local directory to where you wish to download the recordings
   --mp4 is optional - specify to include mp4 videos
