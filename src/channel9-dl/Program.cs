@@ -88,6 +88,8 @@ namespace channel9_dl
             }
             catch(Exception ex)
             {
+                Console.WriteLine(ex);
+                Console.WriteLine();
                 result = -1;
             }
 
@@ -170,6 +172,8 @@ namespace channel9_dl
                     Console.WriteLine("##################################################");
                 }
             }
+
+
         }
     }
 }

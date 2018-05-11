@@ -51,12 +51,12 @@ namespace channel9_dl
 
             if (videoToDownload != null)
             {
-                Console.WriteLine($"Downloading {videoToDownload.GetLocalFileName()}");
-
+                Console.WriteLine($"Downloading... [{videoToDownload.GetLocalFileName()}]");
                 return await videoToDownload.DownloadTo(directory, overwrite);
             }
             else
             {
+                Console.WriteLine($" *** No MP4 Video URLs ***");
                 return null;
             }
         }
@@ -76,9 +76,16 @@ namespace channel9_dl
 
             var audioToDownload = audioTracks.FirstOrDefault();
 
-            Console.WriteLine($"Downloading {audioToDownload.GetLocalFileName()}");
-
-            return await audioToDownload.DownloadTo(directory, overwrite);
+            if (audioToDownload != null)
+            {
+                Console.WriteLine($"Downloading... [{audioToDownload.GetLocalFileName()}]");
+                return await audioToDownload.DownloadTo(directory, overwrite);
+            }
+            else
+            {
+                Console.WriteLine($" *** No MP3 Audio URLs ***");
+                return null;
+            }
         }
     }
 }
