@@ -185,7 +185,7 @@ namespace channel9_dl
             {
                 if (!videos.Key)
                 {
-                    Console.WriteLine("Sessions ot Available:");
+                    Console.WriteLine("Sessions Not Available:");
 
                     foreach (var file in videos)
                     {
