@@ -22,6 +22,9 @@ namespace channel9_dl
         public Uri SessionSite { get; set; }
         public List<VideoRecording> VideoRecordings { get; set; }
         public DateTime PublishDate { get; set; }
+
+        public bool HasLocalFile { get; set; }
+        
         
        
         public string Presenter { get; set; }
@@ -52,11 +55,23 @@ namespace channel9_dl
             if (videoToDownload != null)
             {
                 Console.WriteLine($"Downloading... [{videoToDownload.GetLocalFileName()}]");
-                return await videoToDownload.DownloadTo(directory, overwrite);
+
+                var video = await videoToDownload.DownloadTo(directory, overwrite);
+                if (video.Exists)
+                {
+                    this.HasLocalFile = true;
+                }
+                else
+                {
+                    this.HasLocalFile = false;
+                }
+
+                return video;
             }
             else
             {
                 Console.WriteLine($" *** No MP4 Video URLs ***");
+                this.HasLocalFile = false;
                 return null;
             }
         }
