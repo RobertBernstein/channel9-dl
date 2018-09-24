@@ -35,10 +35,10 @@ or
 
 
 where
-  --rss is required - specify the RSS feed from the channel 9 event containing the recordings
-  -d is required - specify the local directory to where you wish to download the recordings
-  --mp4 is optional - specify to include mp4 videos
-  --mp3 is optional - specify to include mp3 audio tracks
+  - --rss is required - specify the RSS feed from the channel 9 event containing the recordings
+  - -d is required - specify the local directory to where you wish to download the recordings
+  - --mp4 is optional - specify to include mp4 videos
+  - --mp3 is optional - specify to include mp3 audio tracks
   (BTW - no validation yet but if you do not specify at least one, nothing will be downloaded)
-  --hd is optional - specify to indicate you wish to download the highest quality available.  If not specified, the smallest filesize will be downloaded.
-  -n is optional and determines the number of concurrent downloads
+  - --hd is optional - specify to indicate you wish to download the highest quality available.  If not specified, the smallest filesize will be downloaded.
+  - -n is optional and determines the number of concurrent downloads
