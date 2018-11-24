@@ -2,7 +2,7 @@
   "profiles": {
     "channel9-dl": {
       "commandName": "Project",
-      "commandLineArgs": "--rss https://s.ch9.ms/Events/Build/2017/RSS -d D:\\BUILD2017 --mp4 --hd -n 5"
+      "commandLineArgs": "--rss https://s.ch9.ms/Events/Build/2018/RSS -d D:\\BUILD2018 --mp4 --hd -n 5"
     }
   }
 }

@@ -58,7 +58,8 @@ namespace channel9_dl
                     {
                         await MainAsync(rssResult, localDir, mp4Opt.HasValue(), mp3Opt.HasValue(), qualityOpt.HasValue());
                     }
-                    
+
+                    Validate(rssResult, localDir);
                 }
                 catch (AggregateException agex)
                 {
@@ -88,6 +89,8 @@ namespace channel9_dl
             }
             catch(Exception ex)
             {
+                Console.WriteLine(ex);
+                Console.WriteLine();
                 result = -1;
             }
 
@@ -170,6 +173,30 @@ namespace channel9_dl
                     Console.WriteLine("##################################################");
                 }
             }
+
+
+        }
+
+        private static void Validate(Channel9RssResult rssResult, DirectoryInfo directory)
+        {
+            var localVideos = rssResult.Sessions.GroupBy(v => v.HasLocalFile);
+
+            foreach(var videos in localVideos)
+            {
+                if (!videos.Key)
+                {
+                    Console.WriteLine("Sessions Not Available:");
+
+                    foreach (var file in videos)
+                    {
+                        Console.WriteLine("   " + file.Title);
+                    }
+                    Console.WriteLine();
+                    Console.WriteLine();
+                }                               
+            }
+
+            return;
         }
     }
 }
